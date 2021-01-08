@@ -62,8 +62,7 @@ class DemonOverlord(discord.Client):
             print(
                 LogMessage(
                     "Database connection not established, running in local mode",
-                    msg_type="WARNING",
-                    color=LogFormat.WARNING,
+                    msg_type=LogType.WARNING,
                     time=False,
                 )
             )
@@ -176,8 +175,7 @@ class DemonOverlord(discord.Client):
             print(
                 LogMessage(
                     "Post connection config Failed",
-                    msg_type="WARNING",
-                    color=LogFormat.WARNING,
+                    msg_type=LogType.WARNING,
                 )
             )
         else:
@@ -190,8 +188,7 @@ class DemonOverlord(discord.Client):
             print(
                 LogMessage(
                     "No database configuration, running in local mode, some functions may be limited",
-                    msg_type="WARNING",
-                    color=LogFormat.WARNING,
+                    msg_type=LogType.WARNING,
                 )
             )
         else:
