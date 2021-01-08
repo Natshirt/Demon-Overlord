@@ -30,26 +30,26 @@ async def handler(command) -> discord.Embed:
             title=f'{command.invoked_by.display_name} {alone_interactions[command.action]["action"]}.',
         )
     else:
-        # nested function to get mentions of command and make sure
+        # nested function to get mentions of command and make sure if embed title does not get too long
         def get_mentions(everyone: str="") -> list:
             # initialize list and counter
             mentions = [] if len(everyone) == 0 else [everyone]
-            mentionsLen = len(command.invoked_by.display_name) + len(everyone) + 5
+            mentionsLen = len(command.invoked_by.display_name) + len(everyone) + 3
             if command.action in combine_interactions:
                 mentionsLen += (
                     len(combine_interactions[command.action]["action"]["social"]) +
-                    len(combine_interactions[command.action]["emoji"])
+                    len(str(command.bot.config.izzymojis[combine_interactions[command.action]["emoji"]]))
                 )
             else:
                 mentionsLen += (
                     len(social_interactions[command.action]["action"]) +
-                    len(social_interactions[command.action]["emoji"])
+                    len(str(command.bot.config.izzymojis[social_interactions[command.action]["emoji"]]))
                 )
 
             # get mentions and stop iteration when embed title gets too long
             for i in command.mentions:
                 mentionsLen += len(i.display_name) + 2
-                if mentionsLen > 224:
+                if mentionsLen > 255 - 2:
                     break
                 mentions.append(i.display_name)
 
